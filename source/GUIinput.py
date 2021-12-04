@@ -13,7 +13,7 @@ class Ui(QtWidgets.QMainWindow):
     """
     Application
     """
-
+    # Hiện chương trình
     def __init__(self, main_path):
         super(Ui, self).__init__()
         self.main_path = main_path
@@ -25,6 +25,7 @@ class Ui(QtWidgets.QMainWindow):
         self.setup_pushButton()
         self.show()
         
+    # Điền lineEdit    
     def setup_lineEdit(self):
         LE_customer_name: QLineEdit = self.findChild(QLineEdit, "LE_customer_name")
         LE_VIN_code: QLineEdit = self.findChild(QLineEdit, "LE_VIN_code")
@@ -75,7 +76,7 @@ class Ui(QtWidgets.QMainWindow):
                                                                       event=event)
         LE_fixing_date.focusOutEvent = lambda event: self.LE_focusOutEvent(self=LE_fixing_date,
                                                                         event=event)
-        
+    # Hiện xóa    
     def LE_focusOutEvent(UI, self: QLineEdit, event: QFocusEvent):
         if self.text() == "":
             self.action.setVisible(True)
@@ -83,6 +84,7 @@ class Ui(QtWidgets.QMainWindow):
             self.action.setVisible(False)
         QLineEdit.focusOutEvent(self, event)
         
+    # Hiện cảnh báo  
     def setup_foreseen_children(self):
         LT_customer_information: QGridLayout = self.findChild(QGridLayout, "LT_customer_information")
         GB_customer_information: QGroupBox = self.findChild(QGroupBox, "GB_customer_information")
@@ -107,6 +109,7 @@ class Ui(QtWidgets.QMainWindow):
         BT_confirm.clicked.connect(self.BT_confirm_click)
         BT_exit.clicked.connect(self.BT_exit_click)
     
+    # Nút chọn ảnh
     def BT_Ghaph_click(self):
         filenames,_ = QtWidgets.QFileDialog.getOpenFileNames()
         self.scene = QtWidgets.QGraphicsScene(self.GV_inciden_images)
@@ -120,10 +123,15 @@ class Ui(QtWidgets.QMainWindow):
         k = 0
         # Count value in list Filenames
         i = 0
+        #Số sảnh đc chọn 
+        k = int(len(filenames))
+        # Tao list chứa ảnh
+        data_list_graph = list(range(0,k))
+        # Điều chỉnh ảnh
         for file in filenames:
             img = QtGui.QImage(file)
+            data_list_graph[i] = file
             i += 1
-            k = float(len(filenames))
             if k <2:
                 img = img.scaled(pixel[0], pixel[1])
                 Pimax_Item = QtWidgets.QGraphicsPixmapItem(QtGui.QPixmap.fromImage(img))
@@ -143,9 +151,19 @@ class Ui(QtWidgets.QMainWindow):
                     a = self.scene.addItem(Pimax_Item)
                     Pimax_Item.setOffset(pos_2[0], pos_2[1])
                     pos_2[0] += (pixel[0]+5)/(k-round(k/2))
-        
+                    
+    # Nút xác nhận    
     def BT_confirm_click(self):
-        window.close()
+        LE_customer_name: QLineEdit = self.findChild(QLineEdit, "LE_customer_name")
+        LE_VIN_code: QLineEdit = self.findChild(QLineEdit, "LE_VIN_code")
+        LE_number_plate: QLineEdit = self.findChild(QLineEdit, "LE_number_plate")
+        LE_phone_number: QLineEdit = self.findChild(QLineEdit, "LE_phone_number")
+        LE_address: QLineEdit = self.findChild(QLineEdit, "LE_address")
+        LE_fixing_date: QLineEdit = self.findChild(QLineEdit, "LE_fixing_date")
+        
+        
+        
+        
     
     def BT_exit_click(self):
         window.close()

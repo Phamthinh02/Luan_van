@@ -96,7 +96,7 @@ class Ui(QtWidgets.QMainWindow):
         LE_number_car: QLineEdit = self.findChild(QLineEdit, "LE_number_car")
         value = LE_phone_number
         #Open json
-        data_path = os.path.abspath(os.path.join(self.main_path, "source", "data.json"))
+        data_path = os.path.abspath(os.path.join(self.main_path, "data", "data.json"))
         customer = json2dict(data_path)
         keyvalue = 'phone'
         # phone tra trong json

@@ -28,12 +28,12 @@ class Ui(QtWidgets.QMainWindow):
     
     def open_json(self):
         #Open json
-        data_path = os.path.abspath(os.path.join(self.main_path, "source", "data.json"))
+        data_path = os.path.abspath(os.path.join(self.main_path, "data", "data.json"))
         customer = json2dict(data_path)
         
     def setup_lineEdit_information_custom(self):
         #Open json
-        data_path = os.path.abspath(os.path.join(self.main_path, "source", "data.json"))
+        data_path = os.path.abspath(os.path.join(self.main_path, "data", "data.json"))
         customer = json2dict(data_path)
         
         GB_information_custom: QGroupBox = self.findChild(QGroupBox, "GB_information_custom")
@@ -56,7 +56,7 @@ class Ui(QtWidgets.QMainWindow):
         
     def setup_lineEdit_car_number_VIN(self):
         #Open json
-        data_path = os.path.abspath(os.path.join(self.main_path, "source", "data.json"))
+        data_path = os.path.abspath(os.path.join(self.main_path, "data", "data.json"))
         customer = json2dict(data_path)
         vin_num = list(customer["num_vin"])
         vin_num_product = "".join(vin_num[:3])

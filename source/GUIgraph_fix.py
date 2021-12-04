@@ -32,7 +32,7 @@ class Ui(QtWidgets.QMainWindow):
     def setup_graph(self):
         #Luu gia tri vao file json
         GV_graph_fix: QGraphicsView = self.findChild(QGraphicsView, "GV_graph_fix")
-        data_path = os.path.abspath(os.path.join(self.main_path, "source", "data.json"))
+        data_path = os.path.abspath(os.path.join(self.main_path, "data", "data.json"))
         customer = json2dict(data_path)
         # Lay gia tri grap trong json
         grap = customer["grap"]
