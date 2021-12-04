@@ -167,6 +167,7 @@ class Ui(QtWidgets.QMainWindow):
         LE_phone_number: QLineEdit = self.findChild(QLineEdit, "LE_phone_number")
         LE_address: QLineEdit = self.findChild(QLineEdit, "LE_address")
         LE_fixing_date: QLineEdit = self.findChild(QLineEdit, "LE_fixing_date")
+        LE_damage: QLineEdit = self.findChild(QLineEdit, "LE_damage")
         
         if LE_customer_name.text() == "" and LE_VIN_code.text() =="" and LE_number_plate.text() =="" and LE_number_plate.text() =="" and LE_phone_number.text() =="" and LE_address.text() =="" and LE_fixing_date.text() =="":
             GB_customer_information: QGroupBox = self.findChild(QGroupBox, "GB_customer_information")
@@ -177,9 +178,9 @@ class Ui(QtWidgets.QMainWindow):
                 "VIN_code": LE_VIN_code.text(),
                 "number_plate": LE_number_plate.text(),
                 "phone_number": LE_phone_number.text(),
-                "address": LE_address,
+                "address": LE_address.text(),
                 "fixing_date" : LE_fixing_date.text(),
-                "damaged": "Không"
+                "damaged": LE_damage.text()
             }
             data_path = os.path.abspath(os.path.join(self.main_path, "data", "data_cus.json"))
             with open(data_path, 'w') as outfile:
