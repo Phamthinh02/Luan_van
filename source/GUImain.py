@@ -199,8 +199,8 @@ class Ui(QtWidgets.QMainWindow):
             LE_xup_cor.clear()
             LE_air_press.clear()
             
-    def BT_confirm_click():
-        window.close()
+    def BT_confirm_click(self):
+        print("a")
     
     def BT_cancel_click(self):
         window.close()
