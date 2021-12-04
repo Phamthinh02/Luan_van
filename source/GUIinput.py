@@ -108,7 +108,7 @@ class Ui(QtWidgets.QMainWindow):
         BT_Ghaph.clicked.connect(self.BT_Ghaph_click)
         BT_confirm.clicked.connect(self.BT_confirm_click)
         BT_exit.clicked.connect(self.BT_exit_click)
-    
+  
     # Nút chọn ảnh
     def BT_Ghaph_click(self):
         filenames,_ = QtWidgets.QFileDialog.getOpenFileNames()
@@ -151,6 +151,11 @@ class Ui(QtWidgets.QMainWindow):
                     a = self.scene.addItem(Pimax_Item)
                     Pimax_Item.setOffset(pos_2[0], pos_2[1])
                     pos_2[0] += (pixel[0]+5)/(k-round(k/2))
+        
+        data = {'graphic':data_list_graph}
+        with open('F:\HK211\Luan_van\data\data_grap.json', 'w') as outfile:
+            json.dump(data, outfile)
+        
                     
     # Nút xác nhận    
     def BT_confirm_click(self):
