@@ -90,8 +90,12 @@ class Ui(QtWidgets.QMainWindow):
         # GB_foreseen QGroupBox
         BT_math: QPushButton = self.findChild(QPushButton, "BT_math")
         BT_clear: QPushButton = self.findChild(QPushButton, "BT_clear")
+        BT_confirm: QPushButton = self.findChild(QPushButton, "BT_confirm")
+        BT_cancel: QPushButton = self.findChild(QPushButton, "BT_cancel")
         BT_math.clicked.connect(self.BT_math_click)
         BT_clear.clicked.connect(self.BT_clear_click)
+        BT_confirm.clicked.connect(self.BT_confirm_click)
+        BT_cancel.clicked.connect(self.BT_cancel_click)
 
     def BT_math_click(self):
         LE_extTem: QLineEdit = self.findChild(QLineEdit, "LE_extTem")
@@ -194,6 +198,12 @@ class Ui(QtWidgets.QMainWindow):
             LE_rod_len.clear()
             LE_xup_cor.clear()
             LE_air_press.clear()
+            
+    def BT_confirm_click():
+        window.close()
+    
+    def BT_cancel_click(self):
+        window.close()
 
 
 if __name__ == "__main__":
