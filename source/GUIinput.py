@@ -188,6 +188,7 @@ class Ui(QtWidgets.QMainWindow):
             
             file_data = os.path.abspath(os.path.join(self.main_path, "source", "GUImain.py"))
             os.system('python "{}"'.format(file_data))
+            
             window.close()
 
     # Đóng chương trình
