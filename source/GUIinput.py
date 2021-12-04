@@ -154,7 +154,8 @@ class Ui(QtWidgets.QMainWindow):
                     pos_2[0] += (pixel[0]+5)/(k-round(k/2))
         
         data_graph = {'graphic':data_list_graph}
-        with open('F:\HK211\Luan_van\data\data_grap.json', 'w') as outfile:
+        data_path = os.path.abspath(os.path.join(self.main_path, "data", "data_grap.json"))
+        with open(data_path, 'w') as outfile:
             json.dump(data_graph, outfile)
         
                     
@@ -180,7 +181,8 @@ class Ui(QtWidgets.QMainWindow):
                 "fixing_date" : LE_fixing_date.text(),
                 "damaged": "Không"
             }
-            with open('F:\HK211\Luan_van\data\data_cus.json', 'w') as outfile:
+            data_path = os.path.abspath(os.path.join(self.main_path, "data", "data_cus.json"))
+            with open(data_path, 'w') as outfile:
                 json.dump(data_cus, outfile)
             
             file_data = os.path.abspath(os.path.join(self.main_path, "source", "GUImain.py"))
