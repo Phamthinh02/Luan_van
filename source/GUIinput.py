@@ -101,7 +101,7 @@ class Ui(QtWidgets.QMainWindow):
         L_Warning.setVisible(False)
         
     def setup_pushButton(self):
-        # GB_informatin_custom QGroupBox
+        # GB_customer_information QGroupBox
         BT_Ghaph: QPushButton = self.findChild(QPushButton, "BT_Ghaph")
         BT_confirm: QPushButton = self.findChild(QPushButton, "BT_confirm")
         BT_exit: QPushButton = self.findChild(QPushButton, "BT_exit")
@@ -152,9 +152,9 @@ class Ui(QtWidgets.QMainWindow):
                     Pimax_Item.setOffset(pos_2[0], pos_2[1])
                     pos_2[0] += (pixel[0]+5)/(k-round(k/2))
         
-        data = {'graphic':data_list_graph}
+        data_graph = {'graphic':data_list_graph}
         with open('F:\HK211\Luan_van\data\data_grap.json', 'w') as outfile:
-            json.dump(data, outfile)
+            json.dump(data_graph, outfile)
         
                     
     # Nút xác nhận    
@@ -166,6 +166,21 @@ class Ui(QtWidgets.QMainWindow):
         LE_address: QLineEdit = self.findChild(QLineEdit, "LE_address")
         LE_fixing_date: QLineEdit = self.findChild(QLineEdit, "LE_fixing_date")
         
+        if LE_customer_name.text() == "" and LE_VIN_code.text() =="" and LE_number_plate.text() =="" and LE_number_plate.text() =="" and LE_phone_number.text() =="" and LE_address.text() =="" and LE_fixing_date.text() =="":
+            GB_customer_information: QGroupBox = self.findChild(QGroupBox, "GB_customer_information")
+            GB_customer_information.label_warning.setVisible(True)
+        else :
+            data_cus = {
+                "name": LE_customer_name.text(),
+                "VIN_code": LE_VIN_code.text(),
+                "number_plate": LE_number_plate.text(),
+                "phone_number": LE_phone_number.text(),
+                "address": LE_address,
+                "fixing_date" : LE_fixing_date.text(),
+                "damaged": "Không"
+            }
+            with open('F:\HK211\Luan_van\data\data_cus.json', 'w') as outfile:
+                json.dump(data_cus, outfile)
         
         
         
