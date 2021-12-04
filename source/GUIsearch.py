@@ -103,10 +103,10 @@ class Ui(QtWidgets.QMainWindow):
         if customer[keyvalue] == LE_phone_number.text():
             file_data = os.path.abspath(os.path.join(self.main_path, "source", "GUIdisplay.py"))
             os.system('python "{}"'.format(file_data))
+            window.close()
         else :
             GB_informatin_custom: QGroupBox = self.findChild(QGroupBox, "GB_informatin_custom")
             GB_informatin_custom.label_warning.setVisible(True)
-            
             
     def BT_quit_click(self):
         window.close()

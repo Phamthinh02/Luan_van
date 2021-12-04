@@ -21,6 +21,7 @@ class Ui(QtWidgets.QMainWindow):
         gui_path = os.path.abspath(
             os.path.join(main_path, "GUI", "GUIinput.ui"))
         uic.loadUi(gui_path, self)
+        self.setup_lineEdit()
         self.setup_foreseen_children()
         self.setup_pushButton()
         self.show()
@@ -181,12 +182,15 @@ class Ui(QtWidgets.QMainWindow):
             }
             with open('F:\HK211\Luan_van\data\data_cus.json', 'w') as outfile:
                 json.dump(data_cus, outfile)
-        
-        
-        
-    
+            
+            file_data = os.path.abspath(os.path.join(self.main_path, "source", "GUImain.py"))
+            os.system('python "{}"'.format(file_data))
+            window.close()
+
+    # Đóng chương trình
     def BT_exit_click(self):
         window.close()
+        
 if __name__ == "__main__":
     path = os.path.abspath(os.path.dirname(__file__))
     main_path = os.path.abspath(os.path.join(path, os.pardir))
