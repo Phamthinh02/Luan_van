@@ -81,7 +81,6 @@ class Ui(QtWidgets.QMainWindow):
         LE_country.setText(num_vin_data["contry"]["value"][vin_num[0]]["children"][vin_num[1]]["text"])
         vin_product = num_vin_data["name_product_car"]["value"].get(vin_num_product)
         vin_product_2 = num_vin_data["name_product_car"]["value"].get(vin_num_product_2)
-        
         if isinstance(vin_product, dict) and vin_product != None:
             if vin_num_product == vin_product.get("key"):
                 LE_car_model.setText(vin_product.get("text"))
@@ -94,13 +93,7 @@ class Ui(QtWidgets.QMainWindow):
                 LE_car_name.setText("Not assigned")
         else:   
             LE_car_model.setText("Not assigned")
-            LE_car_name.setText("Not assigned")
-             
-        LE_sec_num.setText(vin_num[8])
-        LE_product_date.setText(num_vin_data["product_date"]["value"][vin_num[6]]["text"])
-        LE_factory.setText(vin_num[10])
-        LE_num_product.setText(num_product)
-            
+            LE_car_name.setText("Not assigned")    
         LE_sec_num.setText(vin_num[8])
         LE_product_date.setText(num_vin_data["product_date"]["value"][vin_num[6]]["text"])
         LE_factory.setText(vin_num[10])

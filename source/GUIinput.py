@@ -195,7 +195,7 @@ class Ui(QtWidgets.QMainWindow):
                 window.close()
         else:
             GB_customer_information: QGroupBox = self.findChild(QGroupBox, "GB_customer_information")
-            GB_customer_information.label_warning.setVisible(True)   
+            GB_customer_information.label_warning.setVisible(True)
 
     # Đóng chương trình
     def BT_exit_click(self):

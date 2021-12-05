@@ -1,8 +1,6 @@
-% clc; clear all; close all
 %ve do thi quan he e va n
 %clc;
-%khai bï¿½o tat ca cï¿½c bien su dung
-close all;
+%khai báo tat ca các bien su dung
 syms a b c x y k n m i p q f g n1 m1 name z u v po S D Vh A L W Po Pa SE ed Ve Vc T n0 Lc gct M1 w  pc pmin Tc Pc nb
 % khai bao mang nhiet do T
 x = zeros(1,23);
@@ -11,7 +9,7 @@ for k=1:23
     x(k) = c ;
     c=c+10;
 end
-% khai bï¿½o mang ti so nï¿½n
+% khai báo mang ti so nén
 y=zeros(1,181);
 a=1.5;
 for i=1:181
@@ -25,7 +23,7 @@ for i=1:181
 s(i) = w;
 w = w + 1;
 end
-%khai bï¿½o vï¿½ tï¿½m giï¿½ tri n
+%khai báo và tìm giá tri n
 b=zeros(23,181);
 nb=1;
 for k=1:23
@@ -43,17 +41,16 @@ for i=1:2:23
         text(y(181),b(i,181),name);
 end
 %xac dinh
-% khai bï¿½o giï¿½ tri
-v = input('nhiet do To: '); %300
-u = input('ty so nen cua dong co: '); %9.1
-S = input('Hanh trinh piston: '); %75
-D = input('Duong kinh xylanh: '); %76
-Vh = input('Dung tich xylanh: '); %1343
-A = input('Goc dong muon xuppap: '); %40
-L = input('Chieu dai thanh truyen: '); %133
-W = input('cong suat cuc dai: '); %68.4
-Po = input('Ap suat khi nap: '); %1
-Pa = Po*0.96;
+% khai báo giá tri
+v = 300;
+u = 9.1;
+S = 75;
+D = 76;
+Vh = 1343;
+A = 40;
+L = 133;
+W = 68.4;
+Po = 1;
 Pa = Po*0.96;
 % truy bat diem
 if v>290
@@ -70,7 +67,7 @@ if v>290
    end
    p=b(n1,m1);
    text(q,p,'*');
-% cï¿½ng thuc tinh
+% công thuc tinh
 SE = (S*(1+cosd(A))/2)+L-sqrt((L^2)-((S*sind(A))^2)/4);
 Ve = (pi*(D^2)*SE)/4;
 Vc = (pi/(4*(u-1)))*(D^2)*S;
@@ -107,7 +104,7 @@ for k=1:180
     mS(k)=r;
     r=r-(S/180);
 end
-%kï¿½ nen
+%kì nen
 uk=0;
 for k=181:360
     mS(k)=uk;
@@ -224,43 +221,3 @@ for k = 541:721;
         end
 end
 %duong ap suat
-disp('Exit Ctrl + C');
-figure;
-a = 0;
-ii = 0;
-period = length(pmin);
-fileID = fopen('F:\HK211\Luáº­n VÄƒn\data\data_P.json','w');
-fprintf(fileID, '{ "Data"');
-fprintf(fileID, ':');
-fprintf(fileID, '[');
-time_step = 1/length(pmin);
-str = sprintf('{"xilanh":1, "time":%f, "pmin":%f}', 0, pmin(1));
-fprintf(fileID, str);
-time = input('thoi gian do :');
-time_time = 0;
-for a=0:period:time*period
-    for ii=1:period
-        plot((ii+a)/period, pmin(ii), 'b.', 'MarkerSize', 10);
-        hold on;
-        str = sprintf(', {"xilanh":1, "time":%f, "pmin":%f}', time_time, pmin(ii));
-        time_time = time_time +time_step;
-        fprintf(fileID, str);
-    end
-    pause(0.1);
-end
-fprintf(fileID, ']');
-fprintf(fileID, '}')
-fclose(fileID);
-
-% save dat
-data_pmin = randn (721,1);
-period = length(pmin);
-time_step = 0.0007;
-time = now;
-for ii=1:period
-        
-        data_pmin (ii,1) = pmin(ii);
-        
-        time = time + time_step;
-end
-dlmwrite('F:\HK211\Lu?n V?n\data\data.dat', data_pmin);
