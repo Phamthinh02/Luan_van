@@ -3,7 +3,7 @@ import webbrowser
 from modules.modules_math.math_analysis import *
 
     # Pmax lay gia ti lon nhat trong .dat , Pmin lay gia trinho nhat trong .dat
-if 0.8*compression_pressure < Pmax < compression_pressure and 0.8*Minimum_pressure_intake < Pmin < Minimum_pressure_intake:
+if 0.8*compression_pressure < Pmax < compression_pressure*1.1 and 0.8*Minimum_pressure_intake < Pmin < Minimum_pressure_intake*1.1:
     value = 'Bình thường'
 else:
     value = 'Hư hỏng'

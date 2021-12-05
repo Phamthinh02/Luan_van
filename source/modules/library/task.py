@@ -84,38 +84,15 @@ class Task:
     def task3(cls, UI: QMainWindow):
         filenames,_ = QtWidgets.QFileDialog.getOpenFileNames()
         scene: QGraphicsScene = UI.get_object(cls_name="QGraphicsScene", name="scene_incident_images")
-        # Position imge
         pos = [0,0]
-        pos_2 = [0,0]
-        # Pixel image
-        pixel = [690,580]
-        # Count number of values in list Filename 
-        k = 0
-        # Count value in list Filenames
-        i = 0
         for file in filenames:
             img = QtGui.QImage(file)
-            i += 1
-            k = float(len(filenames))
-            if k <2:
-                img = img.scaled(pixel[0], pixel[1])
-                Pimax_Item = QtWidgets.QGraphicsPixmapItem(QtGui.QPixmap.fromImage(img))
-                a = scene.addItem(Pimax_Item) 
-                Pimax_Item.setOffset(5, 5)
-            elif k>=2:
-                if i <= round(k/2):        
-                    img = img.scaled(pixel[0]/round(k/2), pixel[1]/2)
-                    Pimax_Item = QtWidgets.QGraphicsPixmapItem(QtGui.QPixmap.fromImage(img))
-                    a = scene.addItem(Pimax_Item)
-                    Pimax_Item.setOffset(pos[0], pos[1]) 
-                    pos[0] += (pixel[0]+5)/round(k/2) 
-                elif i > round(k/2):
-                    pos_2[1] = (pixel[1]+5)/2
-                    img = img.scaled(pixel[0]/(k-round(k/2)),pixel[1]/2)
-                    Pimax_Item = QtWidgets.QGraphicsPixmapItem(QtGui.QPixmap.fromImage(img))
-                    a = scene.addItem(Pimax_Item)
-                    Pimax_Item.setOffset(pos_2[0], pos_2[1])
-                    pos_2[0] += (pixel[0]+5)/(k-round(k/2))
+            img = img.scaled(100,100)
+            Pimax_Item = QtWidgets.QGraphicsPixmapItem(QtGui.QPixmap.fromImage(img))
+            a=scene.addItem(Pimax_Item)
+            Pimax_Item.setOffset(pos[0], pos[1])
+            pos[0] += 105
+    
     @classmethod
     def task4(cls, UI: QMainWindow):
         action_name_list = [

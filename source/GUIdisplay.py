@@ -60,7 +60,6 @@ class Ui(QtWidgets.QMainWindow):
         customer = json2dict(data_path)
         vin_num = list(customer["VIN_code"])
         vin_num_product = "".join(vin_num[:3])
-        vin_num_product_2 = "".join(vin_num[:2])
         num_product = "".join(vin_num[11:])
         
         data_vin = os.path.abspath(os.path.join(self.main_path, "source","library", "libary_VIN.json"))
@@ -83,7 +82,6 @@ class Ui(QtWidgets.QMainWindow):
         if vin_num_product == num_vin_data["name_product_car"]["value"][vin_num_product]["key"]:
             LE_car_model.setText(num_vin_data["name_product_car"]["value"][vin_num_product]["text"])
             LE_car_name.setText(num_vin_data["name_product_car"]["value"][vin_num_product]["text"])
-            
         elif vin_num_product_2 == num_vin_data["name_product_car"]["value"][vin_num_product_2]["key"]:
             LE_car_model.setText(num_vin_data["name_product_car"]["value"][vin_num_product_2]["text"])
             LE_car_name.setText(num_vin_data["name_product_car"]["value"][vin_num_product_2]["text"])
@@ -95,7 +93,8 @@ class Ui(QtWidgets.QMainWindow):
         LE_product_date.setText(num_vin_data["product_date"]["value"][vin_num[6]]["text"])
         LE_factory.setText(vin_num[10])
         LE_num_product.setText(num_product)
-        
+    
+    # Thêm giống GUimain
     def setup_lineEdit_diagnose(self):
         GB_diagnose: QGroupBox = self.findChild(QGroupBox, "GB_diagnose")
         LE_diagnose_1: QLineEdit = self.findChild(QLineEdit, "LE_diagnose_1")
