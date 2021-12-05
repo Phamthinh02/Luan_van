@@ -60,6 +60,7 @@ class Ui(QtWidgets.QMainWindow):
         customer = json2dict(data_path)
         vin_num = list(customer["VIN_code"])
         vin_num_product = "".join(vin_num[:3])
+        vin_num_product_2 = "".join(vin_num[:2])
         num_product = "".join(vin_num[11:])
         
         data_vin = os.path.abspath(os.path.join(self.main_path, "source","library", "libary_VIN.json"))
