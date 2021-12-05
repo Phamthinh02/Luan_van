@@ -60,6 +60,7 @@ class Ui(QtWidgets.QMainWindow):
         customer = json2dict(data_path)
         vin_num = list(customer["VIN_code"])
         vin_num_product = "".join(vin_num[:3])
+        vin_num_product_2 = "".join(vin_num[:2])
         num_product = "".join(vin_num[11:])
         
         data_vin = os.path.abspath(os.path.join(self.main_path, "source","library", "libary_VIN.json"))
@@ -78,8 +79,17 @@ class Ui(QtWidgets.QMainWindow):
         #Hien gia tri
         LE_area.setText(num_vin_data["contry"]["value"][vin_num[0]]["text"])
         LE_country.setText(num_vin_data["contry"]["value"][vin_num[0]]["children"][vin_num[1]]["text"])
-        LE_car_model.setText(num_vin_data["name_product_car"]["value"][vin_num_product]["text"])
-        LE_car_name.setText(num_vin_data["name_product_car"]["value"][vin_num_product]["text"])
+        
+        if vin_num_product == num_vin_data["name_product_car"]["value"][vin_num_product]["key"]:
+            LE_car_model.setText(num_vin_data["name_product_car"]["value"][vin_num_product]["text"])
+            LE_car_name.setText(num_vin_data["name_product_car"]["value"][vin_num_product]["text"])
+        elif vin_num_product_2 == num_vin_data["name_product_car"]["value"][vin_num_product_2]["key"]:
+            LE_car_model.setText(num_vin_data["name_product_car"]["value"][vin_num_product_2]["text"])
+            LE_car_name.setText(num_vin_data["name_product_car"]["value"][vin_num_product_2]["text"])
+        else:   
+            LE_car_model.setText("Not assigned")
+            LE_car_name.setText("Not assigned")
+            
         LE_sec_num.setText(vin_num[8])
         LE_product_date.setText(num_vin_data["product_date"]["value"][vin_num[6]]["text"])
         LE_factory.setText(vin_num[10])
