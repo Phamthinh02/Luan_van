@@ -81,6 +81,7 @@ class Ui(QtWidgets.QMainWindow):
         LE_country.setText(num_vin_data["contry"]["value"][vin_num[0]]["children"][vin_num[1]]["text"])
         vin_product = num_vin_data["name_product_car"]["value"].get(vin_num_product)
         vin_product_2 = num_vin_data["name_product_car"]["value"].get(vin_num_product_2)
+        
         if isinstance(vin_product, dict) and vin_product != None:
             if vin_num_product == vin_product.get("key"):
                 LE_car_model.setText(vin_product.get("text"))
