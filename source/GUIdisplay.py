@@ -83,6 +83,7 @@ class Ui(QtWidgets.QMainWindow):
         if vin_num_product == num_vin_data["name_product_car"]["value"][vin_num_product]["key"]:
             LE_car_model.setText(num_vin_data["name_product_car"]["value"][vin_num_product]["text"])
             LE_car_name.setText(num_vin_data["name_product_car"]["value"][vin_num_product]["text"])
+            
         elif vin_num_product_2 == num_vin_data["name_product_car"]["value"][vin_num_product_2]["key"]:
             LE_car_model.setText(num_vin_data["name_product_car"]["value"][vin_num_product_2]["text"])
             LE_car_name.setText(num_vin_data["name_product_car"]["value"][vin_num_product_2]["text"])
