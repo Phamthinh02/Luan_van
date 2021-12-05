@@ -55,15 +55,15 @@ def n_dynamic_caculate(Piston_journey, Late_closing_angle, Connecting_rod_length
 def Analysis(Temperature, Dynamic_compression_ratio, n, Intake_pressure, Volume, n_dynamic):
     n0 = (8.314/(19.806+0.002095*(Temperature+20)
           * (Dynamic_compression_ratio**(n-1)+1))+1)
-    Compression_wattage = (Intake_pressure*Volume*n_dynamic *
+    compression_pressure = (Intake_pressure*Volume*n_dynamic *
                            (Temperature+20)*((Volume**(n0-1))-1))/((n0-1)*Temperature) * 1000
     temperature_C = ((Temperature+20)-273) * \
         Dynamic_compression_ratio**(n0-1)+273
     temperature_F = temperature_C-273
-    compression_pressure = (((Intake_pressure*0.96)*10**5)
+    Compression_wattage = (((Intake_pressure*0.96)*10**5)
                             * 0.000145)*Dynamic_compression_ratio**n0
 
-    return Compression_wattage, temperature_C, temperature_F, compression_pressure
+    return compression_pressure, temperature_C, temperature_F, Compression_wattage
 
 
 def Minimum_pressure(Dynamic_compression_ratio):
@@ -116,7 +116,7 @@ def caculate(extTem, comp_rat, piston_jour, cyl_dm, rod_len, xup_cor, air_press)
                                    Cylinder_diameter=cyl_dm,
                                    Intake_pressure=air_press,
                                    Temperature=Temperature)
-    Compression_wattage, temperature_C, temperature_F, compression_pressure = Analysis(Temperature,
+    compression_pressure, temperature_C, temperature_F, Compression_wattage = Analysis(Temperature,
                                                                                        Dynamic_compression_ratio,
                                                                                        n,
                                                                                        Intake_pressure,
