@@ -8,7 +8,6 @@ import numpy as np
 # Import json module
 from modules.library.IO_support import *
 
-
 class Ui(QtWidgets.QMainWindow):
     """
     Application
