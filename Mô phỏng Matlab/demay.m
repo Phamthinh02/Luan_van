@@ -54,7 +54,6 @@ L = input('Chieu dai thanh truyen: '); %133
 W = input('cong suat cuc dai: '); %68.4
 Po = input('Ap suat khi nap: '); %1
 Pa = Po*0.96;
-Pa = Po*0.96;
 % truy bat diem
 if v>290
     for i = 1:23
