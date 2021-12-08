@@ -233,13 +233,6 @@ class Ui(QtWidgets.QMainWindow):
         LE_rod_len.setReadOnly(False)
         LE_xup_cor.setReadOnly(False)
         LE_air_press.setReadOnly(False)
-        # LE_extTem.clear()
-        # LE_comp_rat.clear()
-        # LE_piston_jour.clear()
-        # LE_cyl_dm.clear()
-        # LE_rod_len.clear()
-        # LE_xup_cor.clear()
-        # LE_air_press.clear()
         GB_foreseen: QGroupBox = self.findChild(QGroupBox, "GB_foreseen")
         GB_foreseen.label_warning.setVisible(False)
         # GB_data GroupBox
@@ -309,14 +302,6 @@ class Ui(QtWidgets.QMainWindow):
             check_point = n/process_step
             await asyncio.sleep(0.1)
     
-    # def launchPopup(self, num_xilanh: int, TIME: float):
-    #     pop = self.Popup(parent=self,
-    #                 num_xilanh=num_xilanh,
-    #                 TIME=TIME,
-    #                 main_path=self.main_path)
-    #     self.pressure_val[num_xilanh] = pop.get_peak_values()
-    #     self.export_table(num_xilanh=num_xilanh)
-    #     pop.show()
 
     def export_graph(self, num_xilanh: int, TIME: float):
         TbW_diagnoses: QTabWidget = self.findChild(QTabWidget, "TbW_diagnoses")
@@ -333,22 +318,10 @@ class Ui(QtWidgets.QMainWindow):
         H_header = TW_table.horizontalHeader()
         for i in range(5):
             H_header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeToContents)
-            # TW_table.setItem(1, i+1, QTableWidgetItem("Hello"))
         V_header = TW_table.horizontalHeader()
         for i in range(4):
             V_header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeToContents)
-            # TW_table.setItem(i, 1, QTableWidgetItem("Hello"))
         self.pressure_val = {}
-
-    # def setup_textEdit(self):
-    #     TE_diagnoses_xilanh1: QTextEdit = self.findChild(QTextEdit, "TE_diagnoses_xilanh1")
-    #     TE_diagnoses_xilanh2: QTextEdit = self.findChild(QTextEdit, "TE_diagnoses_xilanh2")
-    #     TE_diagnoses_xilanh3: QTextEdit = self.findChild(QTextEdit, "TE_diagnoses_xilanh3")
-    #     TE_diagnoses_xilanh4: QTextEdit = self.findChild(QTextEdit, "TE_diagnoses_xilanh4")
-    #     TE_diagnoses_xilanh1.setVisible(False)
-    #     TE_diagnoses_xilanh2.setVisible(False)
-    #     TE_diagnoses_xilanh3.setVisible(False)
-    #     TE_diagnoses_xilanh4.setVisible(False)
             
     def export_table(self, num_xilanh):
         LE_Compression: QLineEdit = self.findChild(QLineEdit, "LE_Compression")
