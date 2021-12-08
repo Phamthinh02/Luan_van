@@ -1,5 +1,5 @@
 import sys
 import os
 
-path = "source\GUIinput.py"
+path = "source\GUIsearch.py"
 os.system(path)
