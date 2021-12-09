@@ -25,10 +25,11 @@ def open_in(compression_pressure, Pmax, Pmin, Minimum_pressure_intake ):
         # Pmax lay gia ti lon nhat trong .dat , Pmin lay gia trinho nhat trong .dat
     if 0.8*compression_pressure < Pmax < compression_pressure*1.1 and 0.8*Minimum_pressure_intake < Pmin < Minimum_pressure_intake*1.1:
         value_in = 'Bình thường'
-        path_open_in = "source\library\libary_fix\Open.txt"
-        path_in = "source\library\libary_fix\Open.txt"
+        path_open_in = "0"
+        path_in = "0"
     else:
         value_in = 'Hư hỏng'
+        path_open_in = "source\library\libary_fix\Tháo lắp động cơ.pdf"
         if Pmin < 0.8*Minimum_pressure_intake:
             path_in = 'source\library\libary_fix\Hở xupap.pdf'
         elif Pmin > 0.62*Minimum_pressure_intake:
