@@ -222,33 +222,39 @@ class Ui(QtWidgets.QMainWindow):
         data_path = os.path.abspath(os.path.join(self.main_path, "data" ,"data_cus_pdf.json"))
         pdf = json2dict(data_path)
 
-        Pmax = pdf["Data"]["Pmax"]
-        compression_pressure = pdf["Data"]["compression_pressure"]
-        Minimum_pressure_intake = pdf["Data"]["Minimum_pressure_intake"]
-        Pmin = pdf["Data"]["Pmin"]
+        num_xilanh = 0
+        for num_xilanh in range(0,4):
+            num_xilanh +=1
+            
+            xilanh_str = "Xylanh_{}".format(num_xilanh)
+            
+            Pmax = pdf[xilanh_str]["Pmax"]
+            compression_pressure = pdf[xilanh_str]["compression_pressure"]
+            Minimum_pressure_intake = pdf[xilanh_str]["Minimum_pressure_intake"]
+            Pmin = pdf[xilanh_str]["Pmin"]
         
-        value, path_open, path= open_c(compression_pressure = compression_pressure ,
-                        Pmax = Pmax ,
-                        Pmin = Pmin ,
-                        Minimum_pressure_intake = Minimum_pressure_intake)
-        
-        value_in, path_open_in, path_in = open_in(compression_pressure = compression_pressure ,
-                        Pmax = Pmax ,
-                        Pmin = Pmin ,
-                        Minimum_pressure_intake = Minimum_pressure_intake)
-        
-        if value == "Bình thường" and value_in == "Bình thường":
-            webbrowser.open_new(path_open)
-        elif value == 'Hư hỏng':
-            webbrowser.open_new(path_open)
-            webbrowser.open_new(path)
-        elif value_in == 'Hư hỏng':
-            webbrowser.open_new(path_open)
-            webbrowser.open_new(path_in)
-        elif value =='Hư hỏng' and value_in == 'Hư hỏng':
-            webbrowser.open_new(path_open)
-            webbrowser.open_new(path)
-            webbrowser.open_new(path_in)
+            value, path_open, path= open_c(compression_pressure = compression_pressure ,
+                            Pmax = Pmax ,
+                            Pmin = Pmin ,
+                            Minimum_pressure_intake = Minimum_pressure_intake)
+            
+            value_in, path_open_in, path_in = open_in(compression_pressure = compression_pressure ,
+                            Pmax = Pmax ,
+                            Pmin = Pmin ,
+                            Minimum_pressure_intake = Minimum_pressure_intake)
+            
+            if value == "Bình thường" and value_in == "Bình thường":
+                webbrowser.open_new(path_open)
+            elif value == 'Hư hỏng':
+                webbrowser.open_new(path_open)
+                webbrowser.open_new(path)
+            elif value_in == 'Hư hỏng':
+                webbrowser.open_new(path_open)
+                webbrowser.open_new(path_in)
+            elif value =='Hư hỏng' and value_in == 'Hư hỏng':
+                webbrowser.open_new(path_open)
+                webbrowser.open_new(path)
+                webbrowser.open_new(path_in)
         
     def BT_cancel_click(self):
         window.close()
