@@ -2,7 +2,7 @@
 
 def open_c(compression_pressure, Pmax, Pmin, Minimum_pressure_intake ):
         # Pmax lay gia ti lon nhat trong .dat , Pmin lay gia trinho nhat trong .dat
-    if 0.8*compression_pressure < Pmax < compression_pressure*1.1 and 0.8*Minimum_pressure_intake < Pmin < Minimum_pressure_intake*1.1:
+    if 0.9*compression_pressure < Pmax < compression_pressure*1.1 and 0.8*Minimum_pressure_intake < Pmin < Minimum_pressure_intake*1.1:
         value = 'Bình thường'
         path_open = "source\library\libary_fix\Open.txt"
         path = "source\library\libary_fix\Open.txt"
@@ -23,7 +23,7 @@ def open_c(compression_pressure, Pmax, Pmin, Minimum_pressure_intake ):
 
 def open_in(compression_pressure, Pmax, Pmin, Minimum_pressure_intake ):
         # Pmax lay gia ti lon nhat trong .dat , Pmin lay gia trinho nhat trong .dat
-    if 0.8*compression_pressure < Pmax < compression_pressure*1.1 and 0.8*Minimum_pressure_intake < Pmin < Minimum_pressure_intake*1.1:
+    if 0.9*compression_pressure < Pmax < compression_pressure*1.1 and 0.8*Minimum_pressure_intake < Pmin < Minimum_pressure_intake*1.1:
         value_in = 'Bình thường'
         path_open_in = "0"
         path_in = "0"
