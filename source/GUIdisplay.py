@@ -118,12 +118,15 @@ class Ui(QtWidgets.QMainWindow):
             minimum_pressure = error[xilanh_str]["minimum_pressure"]
             Pmin = error[xilanh_str]["Pmin"]
             
-            value_str, damage_c_str = compare_c(compression_pressure = compression_pressure ,
+            value_str, damage_c_str = compare_c(
+                        compression_pressure = compression_pressure ,
                         Pmax = Pmax ,
                         Pmin = Pmin ,
-                        Minimum_pressure_intake = Minimum_pressure_intake)
+                        Minimum_pressure_intake = Minimum_pressure_intake,
+                        minimum_pressure =minimum_pressure)
             
-            value_in_str, damage_in_str = compare_in(compression_pressure = compression_pressure ,
+            value_in_str, damage_in_str = compare_in(
+                        compression_pressure = compression_pressure ,
                         Pmax = Pmax ,
                         Pmin = Pmin ,
                         Minimum_pressure_intake = Minimum_pressure_intake)
@@ -238,9 +241,11 @@ class Ui(QtWidgets.QMainWindow):
             value, path_open, path= open_c(compression_pressure = compression_pressure ,
                             Pmax = Pmax ,
                             Pmin = Pmin ,
-                            Minimum_pressure_intake = Minimum_pressure_intake)
+                            Minimum_pressure_intake = Minimum_pressure_intake,
+                            minimum_pressure =minimum_pressure)
             
-            value_in, path_open_in, path_in = open_in(compression_pressure = compression_pressure ,
+            value_in, path_open_in, path_in = open_in(
+                            compression_pressure = compression_pressure ,
                             Pmax = Pmax ,
                             Pmin = Pmin ,
                             Minimum_pressure_intake = Minimum_pressure_intake)
