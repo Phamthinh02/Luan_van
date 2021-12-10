@@ -144,7 +144,7 @@ def damage(comp_rat, piston_jour, cyl_dm, rod_len, xup_cor, air_press, Pci, comp
     Minimum_pressure = minimum_pressure(Dynamic_compression_ratio=Dynamic_compression_ratio)
     if Pci < Minimum_pressure:
         damage_c ='Gãy xéc măng, gãy xupap hay bị lủng piston.'
-    elif Minimum_pressure < Pci <0.62*compression_pressure:
+    elif minimum_pressure < Pci <0.62*compression_pressure:
         damage_c = 'Hở gioăng nắp máy.'
     elif 0.62*compression_pressure < Pci <0.8*compression_pressure:
         damage_c = 'Hở xupap.'
