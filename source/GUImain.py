@@ -147,14 +147,26 @@ class Ui(QtWidgets.QMainWindow):
         
     def save_data(self):
         LE_Compression: QLineEdit = self.findChild(QLineEdit, "LE_Compression")
-        LE_air_press: QLineEdit = self.findChild(QLineEdit, "LE_air_press")
+        LE_extTem: QLineEdit = self.findChild(QLineEdit, "LE_extTem")
         LE_comp_rat: QLineEdit = self.findChild(QLineEdit, "LE_comp_rat")
-        air_press = float(LE_air_press.text())
+        LE_piston_jour: QLineEdit = self.findChild(QLineEdit, "LE_piston_jour")
+        LE_cyl_dm: QLineEdit = self.findChild(QLineEdit, "LE_cyl_dm")
+        LE_rod_len: QLineEdit = self.findChild(QLineEdit, "LE_rod_len")
+        LE_xup_cor: QLineEdit = self.findChild(QLineEdit, "LE_xup_cor")
+        LE_air_press: QLineEdit = self.findChild(QLineEdit, "LE_air_press")
         pmax = float(LE_Compression.text())
-        comp_rat = float(LE_comp_rat.text())
+        n = caculate_n(Temperature=float(LE_extTem.text()),
+                       Compression_ratio=float(LE_comp_rat.text()))
         
-        p_in = minimum_pressure_load(load_pressure = air_press)
-        pmin = minimum_pressure(Dynamic_compression_ratio = comp_rat)
+        Minimum_pressure_charge = Pressure_discharge(Piston_journey=float(LE_piston_jour.text()),
+                                                     Connecting_rod_length=float(LE_rod_len.text()),
+                                                     Compression_ratio=float(LE_comp_rat.text()),
+                                                     Cylinder_diameter=float(LE_cyl_dm.text()),
+                                                     load_pressure=float(LE_air_press.text()),
+                                                     Temperature=float(LE_extTem.text()),
+                                                     n=n)
+        p_in = minimum_pressure_load(load_pressure = float(LE_air_press.text()))
+        pmin = minimum_pressure(Dynamic_compression_ratio = float(LE_comp_rat.text()))
         P_max_data = list(range(1,6))
         P_min_data = list(range(1,6))
         for i in range(1,5):
@@ -178,28 +190,32 @@ class Ui(QtWidgets.QMainWindow):
                             "minimum_pressure": pmin,
                             "Pmax": P_max_data [1],
                             "Minimum_pressure_intake": p_in,
-                            "Pmin": P_min_data [1]
+                            "Pmin": P_min_data [1],
+                            "Minimum_pressure_charge":Minimum_pressure_charge
                         },
                         "Xylanh_2":{
                             "compression_pressure": pmax,
                             "minimum_pressure": pmin,
                             "Pmax": P_max_data [2],
                             "Minimum_pressure_intake": p_in,
-                            "Pmin": P_min_data [2]
+                            "Pmin": P_min_data [2],
+                            "Minimum_pressure_charge":Minimum_pressure_charge
                         },
                         "Xylanh_3":{
                             "compression_pressure": pmax,
                             "minimum_pressure": pmin,
                             "Pmax": P_max_data [3],
                             "Minimum_pressure_intake": p_in,
-                            "Pmin": P_min_data [3]
+                            "Pmin": P_min_data [3],
+                            "Minimum_pressure_charge":Minimum_pressure_charge
                         },
                         "Xylanh_4":{
                             "compression_pressure": pmax,
                             "minimum_pressure": pmin,
                             "Pmax": P_max_data [4],
                             "Minimum_pressure_intake": p_in,
-                            "Pmin": P_min_data [4]
+                            "Pmin": P_min_data [4],
+                            "Minimum_pressure_charge":Minimum_pressure_charge
                         }
                     }
         data_path = os.path.abspath(os.path.join(self.main_path, "data", "data_cus_data.json"))
@@ -423,7 +439,8 @@ class Ui(QtWidgets.QMainWindow):
                                 air_press=load_pressure,
                                 Pci=pressure["compress"],
                                 compression_pressure=compression_pressure)
-            damage_in_str = damage_in(Pmin=pressure["load"],
+            damage_in_str = damage_in(comp_rat=comp_rat,
+                                      Pmin=pressure["load"],
                                       load_pressure=load_pressure)
             assess_str = """
             <h3>Đánh gía hư hỏng:</h3>
