@@ -142,11 +142,71 @@ class Ui(QtWidgets.QMainWindow):
         # MainWindow
         BT_confirm: QPushButton = self.findChild(QPushButton, "BT_confirm")
         BT_cancel: QPushButton = self.findChild(QPushButton, "BT_cancel")
-        BT_confirm.clicked.connect(self.exit_gui)
+        BT_confirm.clicked.connect(self.save_data)
         BT_cancel.clicked.connect(self.exit_gui)
         
+    def save_data(self):
+        LE_Compression: QLineEdit = self.findChild(QLineEdit, "LE_Compression")
+        LE_air_press: QLineEdit = self.findChild(QLineEdit, "LE_air_press")
+        LE_comp_rat: QLineEdit = self.findChild(QLineEdit, "LE_comp_rat")
+        air_press = float(LE_air_press.text())
+        pmax = float(LE_Compression.text())
+        comp_rat = float(LE_comp_rat.text())
         
+        p_in = minimum_pressure_load(load_pressure = air_press)
+        pmin = minimum_pressure(Dynamic_compression_ratio = comp_rat)
+        P_max_data = list(range(1,6))
+        P_min_data = list(range(1,6))
+        for i in range(1,5):
+            data_path = os.path.abspath(os.path.join(self.main_path, "data" ,"data_P_xylanh{}.json".format(i)))
+            customer = json2dict(data_path)
+            graph = customer["Data"]
+            # Tinh tong gia tri trong json
+            k = int(len(graph))
+            # Tao list
+            data_list_P = list(range(0,k))
+            ii = 0
+            for graph[ii] in graph:
+                data_list_P[ii] =  customer["Data"][ii]['pmin']
+                ii+=1
+            P_max_data[i] = max(data_list_P)
+            P_min_data[i] = min(data_list_P)
+        
+        data_cus = {
+                        "Xylanh_1":{
+                            "compression_pressure": pmax,
+                            "minimum_pressure": pmin,
+                            "Pmax": P_max_data [1],
+                            "Minimum_pressure_intake": p_in,
+                            "Pmin": P_min_data [1]
+                        },
+                        "Xylanh_2":{
+                            "compression_pressure": pmax,
+                            "minimum_pressure": pmin,
+                            "Pmax": P_max_data [2],
+                            "Minimum_pressure_intake": p_in,
+                            "Pmin": P_min_data [2]
+                        },
+                        "Xylanh_3":{
+                            "compression_pressure": pmax,
+                            "minimum_pressure": pmin,
+                            "Pmax": P_max_data [3],
+                            "Minimum_pressure_intake": p_in,
+                            "Pmin": P_min_data [3]
+                        },
+                        "Xylanh_4":{
+                            "compression_pressure": pmax,
+                            "minimum_pressure": pmin,
+                            "Pmax": P_max_data [4],
+                            "Minimum_pressure_intake": p_in,
+                            "Pmin": P_min_data [4]
+                        }
+                    }
+        data_path = os.path.abspath(os.path.join(self.main_path, "data", "data_cus_data.json"))
+        with open(data_path, 'w') as outfile:
+            json.dump(data_cus, outfile)
 
+        mainWindow.close()
     def BT_math_click(self):
         LE_extTem: QLineEdit = self.findChild(QLineEdit, "LE_extTem")
         LE_comp_rat: QLineEdit = self.findChild(QLineEdit, "LE_comp_rat")
@@ -245,7 +305,7 @@ class Ui(QtWidgets.QMainWindow):
         LE_Comp_temp_C.clear()
         LE_Comp_temp_F.clear()
         LE_watt.clear()
-    
+        
     def exit_gui(self):
         mainWindow.close()
         
@@ -348,20 +408,19 @@ class Ui(QtWidgets.QMainWindow):
             LE_rod_len: QLineEdit = self.findChild(QLineEdit, "LE_rod_len")
             LE_xup_cor: QLineEdit = self.findChild(QLineEdit, "LE_xup_cor")
             LE_air_press: QLineEdit = self.findChild(QLineEdit, "LE_air_press")
-            LE_air_press: QLineEdit = self.findChild(QLineEdit, "LE_air_press")
             comp_rat = float(LE_comp_rat.text())
             piston_jour = float(LE_piston_jour.text())
             cyl_dm = float(LE_cyl_dm.text())
             rod_len = float(LE_rod_len.text())
             xup_cor = float(LE_xup_cor.text())
-            load_pressure = float(LE_xup_cor.text())
+            load_pressure = float(LE_air_press.text())
             pressure = self.pressure_val[num_xilanh]
             damage_str = damage(comp_rat=comp_rat,
                                 piston_jour=piston_jour,
                                 cyl_dm=cyl_dm,
                                 rod_len=rod_len,
                                 xup_cor=xup_cor,
-                                air_press=air_press,
+                                air_press=load_pressure,
                                 Pci=pressure["compress"],
                                 compression_pressure=compression_pressure)
             damage_in_str = damage_in(Pmin=pressure["load"],

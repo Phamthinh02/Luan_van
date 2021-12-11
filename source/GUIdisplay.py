@@ -103,7 +103,7 @@ class Ui(QtWidgets.QMainWindow):
         LE_num_product.setText(num_product)
     
     def setup_lineEdit_diagnose(self):
-        data_path = os.path.abspath(os.path.join(self.main_path, "data" ,"data_cus_pdf.json"))
+        data_path = os.path.abspath(os.path.join(self.main_path, "data" ,"data_cus_data.json"))
         error = json2dict(data_path)
         
         num_xilanh = 0
@@ -223,7 +223,7 @@ class Ui(QtWidgets.QMainWindow):
         
     def BT_fix_click(self):
         
-        data_path = os.path.abspath(os.path.join(self.main_path, "data" ,"data_cus_pdf.json"))
+        data_path = os.path.abspath(os.path.join(self.main_path, "data" ,"data_cus_data.json"))
         pdf = json2dict(data_path)
 
         num_xilanh = 0
