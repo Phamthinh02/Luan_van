@@ -404,7 +404,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>100</x>
@@ -425,6 +425,13 @@
      <widget class="QPushButton" name="BT_stop">
       <property name="text">
        <string>STOP</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="BT_save">
+      <property name="text">
+       <string>SAVE</string>
       </property>
      </widget>
     </item>
